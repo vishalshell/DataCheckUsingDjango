@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Data Quality Results</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Metric</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Total Values</td>
+            <td>{{ results.total_values }}</td>
+        </tr>
+        <tr>
+            <td>Total Missing Values</td>
+            <td>{{ results.missing_values_total }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Column-wise Analysis:</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Column Name</th>
+            <th>Unique Values</th>
+            <th>Missing Values</th>
+            <th>Duplicated Values</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for col_name, col_data in results.columns_data.items %}
+        <tr>
+            <td>{{ col_name }}</td>
+            <td>{{ col_data.unique_values }}</td>
+            <td>{{ col_data.missing_values }}</td>
+            <td>{{ col_data.duplicated_values }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'upload_file' %}">Back to Upload</a>
+{% endblock %}
