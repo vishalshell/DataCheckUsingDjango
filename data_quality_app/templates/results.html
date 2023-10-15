@@ -16,6 +16,10 @@
             <td>{{ results.total_values }}</td>
         </tr>
         <tr>
+            <td>Total Rows</td>
+            <td>{{ results.total_rows }}</td>
+        </tr>
+        <tr>
             <td>Total Missing Values</td>
             <td>{{ results.missing_values_total }}</td>
         </tr>
@@ -30,6 +34,10 @@
             <th>Unique Values</th>
             <th>Missing Values</th>
             <th>Duplicated Values</th>
+            <th>Invalid Values</th>
+            <th>Mixed Data Formats</th>
+            <th>Actual Data Type</th>
+            <th>Recommended Data Type</th>
         </tr>
     </thead>
     <tbody>
@@ -39,10 +47,19 @@
             <td>{{ col_data.unique_values }}</td>
             <td>{{ col_data.missing_values }}</td>
             <td>{{ col_data.duplicated_values }}</td>
+            <td>{{ col_data.invalid_values }}</td>
+            <td>{{ col_data.mixed_data_formats }}</td>
+            <td>{{ col_data.actual_dtype }}</td>
+            <td>{{ col_data.recommended_dtype }}</td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+
+<h3>Download:</h3>
+<p>
+    <a href="{% url 'download_failed_rows' %}">Download Rows with Incorrect Values</a>
+</p>
 
 <a href="{% url 'upload_file' %}">Back to Upload</a>
 {% endblock %}
