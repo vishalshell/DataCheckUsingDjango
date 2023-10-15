@@ -1,52 +1,45 @@
-# Data Quality Checker: Help Guide
+# Help & Troubleshooting Guide
 
-Welcome to the Data Quality Checker's help guide. This tool is designed to aid users in evaluating the quality of their Excel-based datasets. Below you'll find detailed instructions on how to use the platform and insights on interpreting the results.
+If you're encountering issues or have questions regarding the Data Quality Checker application, this document is here to assist!
 
-## Table of Contents
+## Common Issues:
 
-1. [Platform Overview](#platform-overview)
-2. [Getting Started](#getting-started)
-3. [Data Quality Metrics Explained](#data-quality-metrics-explained)
-4. [Interpreting the Results](#interpreting-the-results)
-5. [Troubleshooting Common Issues](#troubleshooting-common-issues)
-6. [Contact & Support](#contact--support)
+### 1. 'NaTType is not JSON serializable' error:
+Ensure you're using the latest version of the project. This issue was addressed in recent updates. If the problem persists, consider raising an issue on the GitHub repository.
 
-## Platform Overview
+### 2. Missing modules:
+Make sure you've installed all the required dependencies using:
+```bash
+pip install -r requirements.txt
+```
 
-Data Quality Checker is a web-based tool that offers an instant analysis of your Excel datasets. Whether you have large datasets or small tables, our tool evaluates missing data points, duplicates, and more to provide both a bird's-eye view and a granular understanding of your data's quality.
+### 3. Database errors:
+Try resetting the migrations and the database:
+```bash
+python manage.py migrate --zero
+python manage.py makemigrations
+python manage.py migrate
+```
 
-## Getting Started
+## Frequently Asked Questions (FAQ):
 
-### Uploading Your Data
-1. Navigate to the main dashboard of the Data Quality Checker.
-2. Click on the 'Upload' button or drag and drop your Excel file into the designated area.
-3. Ensure the file is either `.xlsx` or `.xls` format for compatibility.
-4. Hit 'Submit' to initiate the analysis.
+### Q: I've uploaded a valid Excel file, but I'm not getting any results?
+**A**: Ensure the Excel file format is supported (e.g., `.xls`, `.xlsx`). If the problem persists, it might be due to specific content in the Excel file that the application might not handle yet. Consider raising an issue with a sample dataset.
 
-### Reviewing The Dashboard
-Once your file is processed, you'll be redirected to the results dashboard. Here, you'll find an array of data quality metrics ranging from general insights to detailed column-wise evaluations.
+### Q: Can I check multiple Excel files at once?
+**A**: As of the current version, the application supports the analysis of one Excel file at a time. Future updates might incorporate batch processing.
 
-## Data Quality Metrics Explained
+### Q: The application recommends a data type change, but I believe the original type is correct. Why is this?
+**A**: Recommendations are based on common patterns detected in the dataset. If the data has variations or unique values, the recommendation might not always be perfect. Always use domain knowledge alongside the tool's feedback.
 
-- **Total Values**: The cumulative count of data points in your uploaded file.
-- **Missing Values**: Indicates the number of data points that are absent or null.
-- **Unique Values**: Reflects the variation in your data by counting distinct entries.
-- **Duplicated Values**: Denotes instances where data entries are repeated.
+### Q: How can I contribute to the project or suggest features?
+**A**: We appreciate contributions and feedback! Please refer to the `README.md` for guidelines on contributing. You can also raise feature requests as issues on the GitHub repository.
 
-## Interpreting the Results
+## Further Assistance:
 
-1. **General Metrics**: At the top, you'll see a summary of the dataset's overall health. This provides a quick snapshot to gauge the cleanliness of your data.
-2. **Column-wise Metrics**: Delve deeper with a detailed breakdown for each column. This section is pivotal for datasets with diverse columns, as it pinpoints specific areas (or columns) that might need attention.
-3. **Visual Graphs**: (If implemented) Graphical representations can provide a visual understanding of the metrics, making anomalies or concerns immediately apparent.
-
-## Troubleshooting Common Issues
-
-- **File Not Uploading**: Double-check the file format. If it's not `.xlsx` or `.xls`, the platform won't support it.
-- **Metrics Not Displaying**: Ensure that your Excel file isn't empty or corrupted. Try opening it on your local machine to confirm.
-- **Server Downtime**: On rare occasions, the server might be under maintenance or facing issues. If the platform isn't responsive, we recommend trying again after some time.
-
-## Contact & Support
-
-For any further queries, feedback, or issues, please raise an issue and I will surely followup on that
+If you encounter any other issues, please:
+1. Check Django's official documentation and forums.
+2. Consult Python and Pandas documentation for any library-specific issues.
+3. Raise an issue on the GitHub repository with a detailed description of the problem.
 
 Thank you for using the Data Quality Checker!
